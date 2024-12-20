@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1CA3A726-71FD-48B5-8BB6-313A8D85FA69}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <ApplicationIcon>Res\Img\icon.ico</ApplicationIcon>
+    <RootNamespace>ChiefsKiss</RootNamespace>
+    <AssemblyName>ChiefsKiss</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Converters\IntToVisibilityConverter.cs" />
+    <Compile Include="Converters\RoleToVisibilityConverter.cs" />
+    <Compile Include="Converters\StringToUriConverter.cs" />
+    <Compile Include="OrdersWindow.xaml.cs">
+      <DependentUpon>OrdersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrderWindow.xaml.cs">
+      <DependentUpon>OrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RegWindow.xaml.cs">
+      <DependentUpon>RegWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AuthWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrdersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\Db.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Db.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Db.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Db.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Db.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Order.cs">
+      <DependentUpon>Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\PickupPoint.cs">
+      <DependentUpon>Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Product.cs">
+      <DependentUpon>Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Role.cs">
+      <DependentUpon>Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\sysdiagram.cs">
+      <DependentUpon>Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\User.cs">
+      <DependentUpon>Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AuthWindow.xaml.cs">
+      <DependentUpon>AuthWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductsWindow.xaml.cs">
+      <DependentUpon>ProductsWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="RegWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="Data\Db.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Db.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Data\Db.edmx.diagram">
+      <DependentUpon>Db.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Res\Povar.bacpac" />
+    <None Include="Res\ИС3\ГИА 2024_ИС3\Приложение 10.pdf" />
+    <None Include="Res\ИС3\ГИА 2024_ИС3\Приложение 8 - КОД 09.02.07-2-2025 Том 1.pdf" />
+    <None Include="Res\ИС3\ГИА 2024_ИС3\Приложение 9.pdf" />
+    <None Include="Res\ИС3\ГИА 2024_ИС3\Программа ГИА 2024_ИС-3.docx" />
+    <None Include="Res\ИС3\Задание\Введение.docx" />
+    <None Include="Res\ИС3\Задание\Общие ресурсы\README-Template.md" />
+    <None Include="Res\ИС3\Задание\Общие ресурсы\README-Template_rus.md" />
+    <None Include="Res\ИС3\Задание\Общие ресурсы\Введение.pdf" />
+    <None Include="Res\ИС3\Задание\Общие ресурсы\Руководство по стилю.pdf" />
+    <None Include="Res\ИС3\Задание\Общие ресурсы\Требования и рекомендации.pdf" />
+    <None Include="Res\ИС3\Задание\Руководство по стилю.docx" />
+    <None Include="Res\ИС3\Задание\Сессия 1.pdf" />
+    <None Include="Res\ИС3\Задание\Сессия 1\User.csv" />
+    <None Include="Res\ИС3\Задание\Сессия 1\Заказ_import.xlsx" />
+    <None Include="Res\ИС3\Задание\Сессия 1\Пункты выдачи_import.xlsx" />
+    <None Include="Res\ИС3\Задание\Сессия 1\Товар_import\Товар_import_Столовые приборы.xlsx" />
+    <None Include="Res\ИС3\Задание\Требования и рекомендации.docx" />
+    <None Include="Res\ИС3\СП\ДЭ22-23\Задание.docx" />
+    <None Include="Res\ИС3\СП\ДЭ22-23\Критерии.docx" />
+    <None Include="Res\ИС3\СП\ДЭ23-24\задание.docx" />
+    <None Include="Res\ИС3\СП\ДЭ23-24\критерии.docx" />
+    <None Include="Res\ИС3\СП\ДЭ25\ГИА_2025\КОД 09.02.07-2-2025 Приложения к образцу задания Том 1.zip" />
+    <None Include="Res\ИС3\СП\ДЭ25\ГИА_2025\КОД 09.02.07-2-2025 Том 1.pdf" />
+    <None Include="Res\ИС3\СП\Салон красоты\Задание Салон красоты.docx" />
+    <None Include="Res\ИС3\СП\Салон красоты\Руководство по стилю.docx" />
+    <None Include="Res\ИС3\СП\Салон красоты\Товары салона красоты.rar" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\Db.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Db.Context.cs</LastGenOutput>
+      <DependentUpon>Db.edmx</DependentUpon>
+    </Content>
+    <Content Include="Data\Db.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Db.edmx</DependentUpon>
+      <LastGenOutput>Db.cs</LastGenOutput>
+    </Content>
+    <Resource Include="Res\Img\icon.ico" />
+    <Resource Include="Res\Img\logo.png" />
+    <Content Include="Res\Img\А112Т4.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\Img\T793T4.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\Img\R836H6.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\Img\K437E6.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\Img\H384H3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\Img\G387Y6.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\Img\F573T5.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\Img\E732R7.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\Img\D735T5.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\Img\B736H6.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\Img\picture.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Res\ИС3\Задание\Общие ресурсы\icon.ico" />
+    <Resource Include="Res\ИС3\Задание\Общие ресурсы\logo.png" />
+    <Content Include="Res\ИС3\Задание\Сессия 1\mssql_script_trade.sql" />
+    <Content Include="Res\ИС3\Задание\Сессия 1\mysql_script_trade.sql" />
+    <Resource Include="Res\ИС3\Задание\Сессия 1\picture.png" />
+    <Resource Include="Res\ИС3\Задание\Сессия 1\Товар_import\B736H6.jpg" />
+    <Resource Include="Res\ИС3\Задание\Сессия 1\Товар_import\D735T5.jpg" />
+    <Resource Include="Res\ИС3\Задание\Сессия 1\Товар_import\E732R7.jpg" />
+    <Resource Include="Res\ИС3\Задание\Сессия 1\Товар_import\F573T5.jpg" />
+    <Resource Include="Res\ИС3\Задание\Сессия 1\Товар_import\G387Y6.jpg" />
+    <Resource Include="Res\ИС3\Задание\Сессия 1\Товар_import\H384H3.jpg" />
+    <Resource Include="Res\ИС3\Задание\Сессия 1\Товар_import\K437E6.jpg" />
+    <Resource Include="Res\ИС3\Задание\Сессия 1\Товар_import\R836H6.jpg" />
+    <Resource Include="Res\ИС3\Задание\Сессия 1\Товар_import\T793T4.jpg" />
+    <Resource Include="Res\ИС3\Задание\Сессия 1\Товар_import\А112Т4.jpg" />
+    <Resource Include="Res\ИС3\ИС3.png" />
+    <Content Include="Res\ИС3\СП\Салон красоты\BeautySalonDB.sql" />
+    <Resource Include="Res\ИС3\СП\Салон красоты\beauty_logo.ico" />
+    <Resource Include="Res\ИС3\СП\Салон красоты\beauty_logo.png" />
+    <Resource Include="Res\ИС3\СП\Салон красоты\picture.png" />
+    <Resource Include="Res\ИС3\СП\Салон красоты\products_grid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

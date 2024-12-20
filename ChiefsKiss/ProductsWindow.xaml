@@ -1,0 +1,119 @@
+﻿<Window x:Class="ChiefsKiss.ProductsWindow"
+        xmlns:cnv="clr-namespace:ChiefsKiss.Converters"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Width="800"
+        Height="450"
+        MinWidth="400"
+        MinHeight="300"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="Поваренок | Продукты"
+        WindowStyle="ThreeDBorderWindow"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <cnv:StringToUriConverter x:Key="StringToUriConverter"/>
+        <cnv:IntToVisibilityConverter x:Key="IntToVisibilityConverter"/>
+        <cnv:RoleToVisibilityConverter x:Key="RoleToVisibilityConverter"/>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Grid Background="{DynamicResource SecondaryColor}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Orientation="Horizontal">
+                <Image Width="60"
+                       Margin="8"
+                       Source="/Res/Img/logo.png">
+                    <Image.BitmapEffect>
+                        <DropShadowBitmapEffect Color="Firebrick"/>
+                    </Image.BitmapEffect>
+                </Image>
+                <TextBlock Margin="8"
+                           FontSize="24"
+                           Text="Поваренок"
+                           FontWeight="SemiBold"
+                           VerticalAlignment="Center"
+                           Foreground="{DynamicResource AccentColor}"/>
+            </StackPanel>
+
+            <WrapPanel Margin="8"
+                       Grid.Column="1"
+                       VerticalAlignment="Center">
+                <Button Margin="8"
+                        x:Name="openOrdersBtn"
+                        Click="openOrdersBtn_Click"
+                        Visibility="{Binding UserRole, Converter={StaticResource RoleToVisibilityConverter}, ConverterParameter=М}">
+                    <TextBlock>
+                        Заказ<Underline>ы</Underline>
+                    </TextBlock>
+                </Button>
+                <Button Margin="8"
+                        x:Name="orderBtn"
+                        Click="orderBtn_Click"
+                        Visibility="{Binding UserID, Converter={StaticResource IntToVisibilityConverter}}">
+                    <TextBlock>
+                        Зак<Underline>а</Underline>зать
+                    </TextBlock>
+                </Button>
+                <Button Margin="8"
+                        Click="Button_Click">
+                    <TextBlock>
+                        В<Underline>ы</Underline>йти
+                    </TextBlock>
+                </Button>
+                <TextBlock Margin="8"
+                           FontSize="16"
+                           Text="{Binding UserName}"/>
+            </WrapPanel>
+        </Grid>
+        
+        <Grid Grid.Row="1"
+              Grid.IsSharedSizeScope="True">
+            <ListView Margin="8"
+                      x:Name="listView"
+                      SelectionMode="Multiple"
+                      d:ItemsSource="{d:SampleData ItemCount=5}"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="A"/>
+                                <ColumnDefinition SharedSizeGroup="B"/>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="C"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Width="96"
+                                   Margin="8"
+                                   Source="{Binding ProductImage, Converter={StaticResource StringToUriConverter}, TargetNullValue='Res/Img/picture.png'}"/>
+                        
+                            <StackPanel Margin="8"
+                                        Grid.Column="1">
+                                <TextBlock FontSize="18"
+                                           Text="{Binding ProductName}"/>
+                                <TextBlock Text="{Binding ProductCategory}"/>
+                                <TextBlock Text="{Binding ProductDescription}"/>
+                                <TextBlock Text="{Binding ProductCost, StringFormat={}{0:0.00} руб.}"/>
+                            </StackPanel>
+
+                            <TextBlock Margin="8"
+                                       Grid.Column="2"
+                                       Text="{Binding ProductDiscountAmount, StringFormat={}Скидка {0}%}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</Window>

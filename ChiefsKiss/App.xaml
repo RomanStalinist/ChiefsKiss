@@ -1,0 +1,65 @@
+﻿<Application x:Class="ChiefsKiss.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ChiefsKiss"
+             Startup="Application_Startup">
+    <Application.Resources>
+        <SolidColorBrush x:Key="PrimaryColor" Color="#FFF"/>
+        <SolidColorBrush x:Key="AccentColor" Color="#CC6600"/>
+        <SolidColorBrush x:Key="SecondaryColor" Color="#FFCC99"/>
+        <SolidColorBrush x:Key="AccentColorHover" Color="#BB5500"/>
+        <SolidColorBrush x:Key="AccentColorDisabled" Color="#99CC6600"/>
+        
+        <Style TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        </Style>
+        
+        <Style TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="20,8"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="{DynamicResource AccentColor}"/>
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryColor}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryColor}"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                        </Border>
+                        
+                        <ControlTemplate.Triggers>
+                            <Trigger Value="True"
+                                     Property="IsMouseOver">
+                                <Setter TargetName="border"
+                                        Property="Background"
+                                        Value="{DynamicResource AccentColorHover}"/>
+                                <Setter TargetName="border"
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource SecondaryColor}"/>
+                            </Trigger>
+                            <Trigger Value="False"
+                                     Property="IsEnabled">
+                                <Setter TargetName="border"
+                                        Property="Background"
+                                        Value="{DynamicResource AccentColorDisabled}"/>
+                                <Setter TargetName="border"
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource PrimaryColor}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Application.Resources>
+</Application>
